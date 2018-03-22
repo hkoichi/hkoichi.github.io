@@ -1,1 +1,43 @@
-Hello World
+<html lang="ja">
+<meta charset="UTF-8">
+<body>
+
+<div style="width: 0; height: 0; overflow: hidden;">
+    <iframe id="launch_frame" name="launch_frame"> </iframe>
+</div>
+
+
+<script>
+  // アプリを開く。アプリがインストールされていなければサイトを開く。
+  function launchApp() {
+    var IOS_SCHEME = 'iOSのURLスキームをここに入れるべし！';
+    var IOS_STORE = 'iOSのストアURLをここに入れるべし！';
+    var ANDROID_SCHEME = 'AndroidのURLスキームをここに入れるべし！';
+    var ANDROID_PACKAGE = 'Androidのパッケージ名をここに入れるべし！';
+    var PC_SITE = '公式サイトのURLとかここに入れるべし！'
+
+    var userAgent = navigator.userAgent.toLowerCase();
+    // iPhone端末ならアプリを開くかApp Storeを開く。
+    if (userAgent.search(/iphone|ipad|ipod/) > -1) {
+      launch_frame.location.href = IOS_SCHEME + '://';
+      setTimeout(function() {
+        location.href = IOS_STORE;
+      }, 500);
+    }
+    // Android端末ならアプリを開くかGoogle Playを開く。
+    else if (userAgent.search(/android/) > -1) {
+      document.location = 'intent://#Intent;scheme=' + ANDROID_SCHEME
+        + ';package=' + ANDROID_PACKAGE + ';end';
+    }
+    // その他・不明・PCなどの場合はサイトを開く。
+    else {
+    }
+  }
+
+  // ページ読み込み時に実行
+  window.onload = function() {
+    launchApp();
+  }
+</script>
+</body>
+</html>
