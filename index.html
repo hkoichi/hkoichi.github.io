@@ -15,7 +15,6 @@ Hello, koichi
     var IOS_STORE = 'iOSのストアURLをここに入れるべし！';
     var ANDROID_SCHEME = 'smartmeetup';
     var ANDROID_PACKAGE = 'com.app.gathering.gethtest';
-    var PC_SITE = '公式サイトのURLとかここに入れるべし！'
 
     var userAgent = navigator.userAgent.toLowerCase();
     // iPhone端末ならアプリを開くかApp Storeを開く。
@@ -27,7 +26,7 @@ Hello, koichi
     }
     // Android端末ならアプリを開くかGoogle Playを開く。
     else if (userAgent.search(/android/) > -1) {
-      document.location = 'intent://#Intent;scheme=' + ANDROID_SCHEME
+      location.href = 'intent://#Intent;scheme=' + ANDROID_SCHEME
         + ';package=' + ANDROID_PACKAGE + ';end';
     }
     // その他・不明・PCなどの場合はサイトを開く。
